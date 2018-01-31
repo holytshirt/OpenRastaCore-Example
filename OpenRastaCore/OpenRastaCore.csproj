@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="System.CodeDom" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="OpenRasta">
+      <HintPath>..\libs\OpenRasta.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenRasta.Codecs.Newtonsoft.Json">
+      <HintPath>..\libs\OpenRasta.Codecs.Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenRasta.Hosting.AspNetCore">
+      <HintPath>..\libs\OpenRasta.Hosting.AspNetCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
