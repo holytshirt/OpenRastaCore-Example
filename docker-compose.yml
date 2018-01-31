@@ -1,8 +1,11 @@
 version: '3'
 
 services:
-  openrastacoresite:
+  api:
+    container_name: openrastacoresite
     image: openrastacoresite
+    ports:
+      - "5000:80"
     build:
       context: .
       dockerfile: OpenRastaCore/Dockerfile
