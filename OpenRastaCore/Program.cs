@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore;
+﻿using System;
+using System.IO;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace BasicOpenRastaSite
@@ -7,15 +9,13 @@ namespace BasicOpenRastaSite
   {
     public static void Main(string[] args)
     {
-      BuildWebHost(args).Run();
-    }
-
-    public static IWebHost BuildWebHost(string[] args)
-    {
-      return WebHost.CreateDefaultBuilder(args)
-        .UseStartup<Startup>()
-        .UseKestrel()
-        .Build();
+        var builder = new WebHostBuilder()
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseStartup<Startup>()
+            .UseKestrel();
+            
+        var host = builder.Build();
+        host.Run();
     }
   }
 }
