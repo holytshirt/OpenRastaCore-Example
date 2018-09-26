@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.1.1" />
-    <PackageReference Include="openrasta-core" Version="2.6.0-preview.1.1360" />
-    <PackageReference Include="OpenRasta.Codecs.Newtonsoft.Json" Version="2.6.0-preview.1.1360" />
-    <PackageReference Include="OpenRasta.Hosting.AspNetCore" Version="2.6.0-preview.1.1360" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="openrasta-core" Version="2.6.0-preview.2" />
+    <PackageReference Include="OpenRasta.Codecs.Newtonsoft.Json" Version="2.6.0-preview.2" />
+    <PackageReference Include="OpenRasta.Hosting.AspNetCore" Version="2.6.0-preview.2" />
   </ItemGroup>
 
 </Project>

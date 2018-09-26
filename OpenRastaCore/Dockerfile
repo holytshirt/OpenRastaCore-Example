@@ -1,21 +1,16 @@
-FROM microsoft/aspnetcore:2.0 AS base
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM microsoft/aspnetcore-build:2.0 AS build
+FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-COPY *.sln ./
-COPY /libs ./
-COPY OpenRastaCore/OpenRastaCore.csproj OpenRastaCore/
+COPY OpenRastaCore.csproj .
 RUN dotnet restore
 COPY . .
-WORKDIR /src/OpenRastaCore
-RUN dotnet build -c Release -o /app
-
-FROM build AS publish
+WORKDIR /src
 RUN dotnet publish -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "OpenRastaCore.dll"]

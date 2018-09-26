@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using OpenRasta.Codecs.Newtonsoft.Json;
-using OpenRasta.Configuration;
 using OpenRasta.Hosting.AspNetCore;
 
 namespace BasicOpenRastaSite
@@ -19,39 +16,12 @@ namespace BasicOpenRastaSite
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
             app.UseOpenRasta(new OpenRastaConfiguration());
         }
-    }
-
-    public class OpenRastaConfiguration : IConfigurationSource
-    {
-        public void Configure()
-        {
-            ResourceSpace.Has
-                .ResourcesOfType<IEnumerable<TaskItem>>()
-                .AtUri("/tasks")
-                .HandledBy<TaskHandler>()
-                .TranscodedBy<NewtonsoftJsonCodec>();
-        }
-    }
-
-    public class TaskHandler
-    {
-        public IEnumerable<TaskItem> Get()
-        {
-            return new[] {new TaskItem(1, "Title 1"), new TaskItem(2, "Title 2")};
-        }
-    }
-
-    public class TaskItem
-    {
-        public TaskItem(int id, string title)
-        {
-            Id = id;
-            Title = title;
-        }
-
-        public int Id { get; }
-        public string Title { get; }
     }
 }
